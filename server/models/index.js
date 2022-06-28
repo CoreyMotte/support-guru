@@ -1,5 +1,5 @@
 //set up all mongoose models here
 const User = require('./User');
-const Request = require('./Request');
+const Ticket = require('./Ticket');
 
-module.exports = { User, Request };
+module.exports = { User, Ticket };

@@ -1,0 +1,17 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "Project 3 full-stack MERN application",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "author": "CoreyMotte",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.2.2"
+  }
+}

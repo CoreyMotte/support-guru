@@ -26,11 +26,16 @@ const userSchema = new Schema({
     }
 });
 
-//catch password value before saving to database and hash the password using bcrypt
+// catch password value before saving to database and hash the password using bcrypt
 userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
     next();
 });
+
+// method to compare hashed password with password entered
+userSchema.methods.isCorrectPassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+  };
 
 const User = model('user', userSchema);
 

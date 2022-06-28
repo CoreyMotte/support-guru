@@ -7,12 +7,12 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        perms: String
     }
 
-    type Auth {
-        token: ID!
-        user: User
+    type AuthData {
+        userId: ID!
+        token: String!
+        tokenExpiration: String!
     }
 
     type Query {
@@ -21,8 +21,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addUser(username: String!, email: String!, password: String!): Auth
-        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): AuthData!
+        login(email: String!, password: String!): AuthData!
     }
 `;
 

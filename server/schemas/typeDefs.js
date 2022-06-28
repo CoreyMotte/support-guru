@@ -9,6 +9,14 @@ const typeDefs = gql`
         password: String
     }
 
+    type Ticket {
+        ticketId: ID
+        title: String
+        description: String
+        isOpen: Boolean
+        createdAt: String
+    }
+
     type AuthData {
         userId: ID!
         token: String!
@@ -17,7 +25,9 @@ const typeDefs = gql`
 
     type Query {
         users: [User]
+        tickets: [Ticket]
         user(username: String!): User
+        ticket(ticketId: String!): Ticket
     }
 
     type Mutation {

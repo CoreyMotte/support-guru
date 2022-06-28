@@ -1,7 +1,7 @@
 // functions that populate our schema with data
 // this file contains both queries and mutations (read and write)
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Ticket } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -11,6 +11,13 @@ const resolvers = {
         },
         user: async (parent, { username }) => {
             return User.findOne({ username });
+        },
+
+        tickets: async () => {
+            return Ticket.find();
+        },
+        ticket: async (parent, { ticketId }) => {
+            return Ticket.findOne({ ticketId });
         }
     },
 

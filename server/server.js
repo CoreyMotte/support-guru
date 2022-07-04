@@ -1,7 +1,8 @@
 const express = require('express');
 const db = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
-const { resolvers, typeDefs } = require('./schemas/')
+const { resolvers, typeDefs } = require('./schemas/');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 
@@ -11,6 +12,7 @@ const app = express();
 // set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // init apollo
 const server = new ApolloServer({

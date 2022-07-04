@@ -2,7 +2,6 @@ const express = require('express');
 const db = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
 const { resolvers, typeDefs } = require('./schemas/')
-const isAuth = require('./utils/is-auth')
 
 const PORT = process.env.PORT || 3001;
 
@@ -12,7 +11,6 @@ const app = express();
 // set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(isAuth);
 
 // init apollo
 const server = new ApolloServer({

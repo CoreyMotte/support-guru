@@ -7,7 +7,19 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
+        token: String
         openedTickets: [Ticket!]
+    }
+
+    input RegisterInput {
+        username: String
+        email: String
+        password: String
+    }
+
+    input LoginInput {
+        email: String
+        password: String
     }
 
     type Ticket {
@@ -30,25 +42,17 @@ const typeDefs = gql`
         updatedAt: String!
     }
 
-    type AuthData {
-        userId: ID!
-        token: String!
-        tokenExpiration: String!
-    }
-
     type Query {
         users: [User]
         tickets: [Ticket]
-        user(username: String!): User
+        user(id: ID!): User
         ticket(_id: String!): Ticket
         comments: [Comment]
     }
 
     type Mutation {
-        addUser(username: String!, email: String!, password: String!): AuthData!
-        login(email: String!, password: String!): AuthData!
-        createTicket(title: String!, description: String!, category: String!, priority: String!, createdBy: String!): Ticket
-        addComment(ticketId: ID!): Comment
+        registerUser(registerInput: RegisterInput): User
+        loginUser(loginInput: LoginInput): User
     }
 `;
 

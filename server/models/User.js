@@ -21,21 +21,12 @@ const userSchema = new Schema({
         required: [true, 'Please enter a password.'],
         minLength: [8, 'Password must contain at least 8 characters.']
     },
-    perms: {
-        type: String
-    },
     openedTickets: [
         {
             type: Schema.Types.ObjectId,
             ref: 'comment'
         }
     ]
-});
-
-// catch password value before saving to database and hash the password using bcrypt
-userSchema.pre('save', async function (next) {
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
 });
 
 // method to compare hashed password with password entered

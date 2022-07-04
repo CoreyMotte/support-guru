@@ -32,7 +32,13 @@ const ticketSchema = new Schema(
         createdBy: {
             type: Schema.Types.ObjectId,
             ref: 'user'
-        }
+        },
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'comment'
+            }
+        ]
     },
     {
         toJSON: {

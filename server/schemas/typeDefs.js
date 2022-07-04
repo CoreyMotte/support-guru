@@ -3,18 +3,31 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type User {
-        _id: ID
+        _id: ID!
         username: String
         email: String
         password: String
+        openedTickets: [Ticket!]
     }
 
     type Ticket {
-        ticketId: ID
+        _id: ID
         title: String
         description: String
         isOpen: Boolean
         createdAt: String
+        createdBy: User!
+        priority: String
+        category: String
+        comments: [Comment]
+    }
+
+    type Comment {
+        _id: ID
+        ticket: Ticket!
+        createdBy: User!
+        createdAt: String!
+        updatedAt: String!
     }
 
     type AuthData {
@@ -27,12 +40,15 @@ const typeDefs = gql`
         users: [User]
         tickets: [Ticket]
         user(username: String!): User
-        ticket(ticketId: String!): Ticket
+        ticket(_id: String!): Ticket
+        comments: [Comment]
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): AuthData!
         login(email: String!, password: String!): AuthData!
+        createTicket(title: String!, description: String!, category: String!, priority: String!, createdBy: String!): Ticket
+        addComment(ticketId: ID!): Comment
     }
 `;
 

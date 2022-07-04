@@ -1,40 +1,9 @@
 const { Schema, model } = require('mongoose');
 const moment = require('moment');
-
-const commentSchema = new Schema(
-    {
-        commentId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
-        },
-        commentBody: {
-            type: String,
-            required: true
-        },
-        commentBy: {
-            type: String,
-            required: true
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-        }
-    },
-    {
-        toJSON: {
-            getters: true,
-        },
-    }
-);
+const Comment = require('./Comment');
 
 const ticketSchema = new Schema(
     {
-        ticketId: {
-            type: Number,
-            required: true,
-            autoIncrement: true
-        },
         title: {
             type: String,
             required: true
@@ -47,12 +16,23 @@ const ticketSchema = new Schema(
             type: Boolean,
             default: true
         },
+        category: {
+            type: String,
+            required: true
+        },
+        priority: {
+            type: String,
+            required: true
+        },
         createdAt: {
             type: Date,
             default: Date.now,
             get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         },
-        comments: [commentSchema]
+        createdBy: {
+            type: Schema.Types.ObjectId,
+            ref: 'user'
+        }
     },
     {
         toJSON: {
@@ -62,9 +42,7 @@ const ticketSchema = new Schema(
     }
 );
 
-ticketSchema.virtual("commentCount").get(function () {
-    return this.comments.length;
-});
+
 
 const Ticket = model('ticket', ticketSchema);
 

@@ -11,19 +11,25 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: [ true, 'Please enter an email address.' ],
+        required: [true, 'Please enter an email address.'],
         unique: true,
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email address.']
     },
     password: {
         type: String,
-        required: [ true, 'Please enter a password.' ],
-        minLength: [ 8, 'Password must contain at least 8 characters.' ]
+        required: [true, 'Please enter a password.'],
+        minLength: [8, 'Password must contain at least 8 characters.']
     },
     perms: {
         type: String
-    }
+    },
+    openedTickets: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'comment'
+        }
+    ]
 });
 
 // catch password value before saving to database and hash the password using bcrypt
@@ -35,7 +41,7 @@ userSchema.pre('save', async function (next) {
 // method to compare hashed password with password entered
 userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
-  };
+};
 
 const User = model('user', userSchema);
 

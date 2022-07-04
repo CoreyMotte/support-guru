@@ -21,6 +21,9 @@ const userSchema = new Schema({
         required: [true, 'Please enter a password.'],
         minLength: [8, 'Password must contain at least 8 characters.']
     },
+    token: {
+        type: String
+    },
     openedTickets: [
         {
             type: Schema.Types.ObjectId,

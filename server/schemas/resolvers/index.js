@@ -1,4 +1,5 @@
 const userResolvers = require('./userResolvers');
+const ticketResolvers = require('./ticketResolvers');
 
 module.exports = {
     Query: {

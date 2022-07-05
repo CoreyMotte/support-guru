@@ -32,15 +32,14 @@ const typeDefs = gql`
         createdBy: User!
         priority: String
         category: String
-        comments: [Comment]
     }
 
-    type Comment {
-        _id: ID
-        ticket: Ticket!
-        createdBy: User!
-        createdAt: String!
-        updatedAt: String!
+    input TicketInput {
+        title: String
+        description: String
+        category: String
+        priority: String
+        createdBy: String
     }
 
     type Query {
@@ -48,12 +47,12 @@ const typeDefs = gql`
         tickets: [Ticket]
         user(id: ID!): User
         ticket(_id: String!): Ticket
-        comments: [Comment]
     }
 
     type Mutation {
         registerUser(registerInput: RegisterInput): User
         loginUser(loginInput: LoginInput): User
+        createTicket(ticketInput: TicketInput): Ticket
     }
 `;
 

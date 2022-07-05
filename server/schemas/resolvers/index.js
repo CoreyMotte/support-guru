@@ -3,9 +3,11 @@ const ticketResolvers = require('./ticketResolvers');
 
 module.exports = {
     Query: {
-        ...userResolvers.Query
+        ...userResolvers.Query,
+        ...ticketResolvers.Query
     },
     Mutation: {
-        ...userResolvers.Mutation
+        ...userResolvers.Mutation,
+        ...ticketResolvers.Mutation
     },
 };

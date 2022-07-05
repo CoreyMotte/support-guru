@@ -9,8 +9,8 @@ module.exports = {
         tickets: async () => {
             return Ticket.find();
         },
-        ticket: async (parent, { ID }) => {
-            return Ticket.findById(ID);
+        ticket: async (parent, { _id }) => {
+            return Ticket.findById(_id);
         },
     },
 

@@ -13,9 +13,7 @@ const app = express();
 // set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-    origin: ["https://localhost:3001/graphql", "https://support-guru.herokuapp.com/graphql"]
-}));
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
@@ -25,8 +23,6 @@ if (process.env.NODE_ENV === 'production') {
 const server = new ApolloServer({
     typeDefs,
     resolvers
-},{
-    introspection:true
 })
 
 app.get('*', (req, res) => {
@@ -40,7 +36,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     db.once('open', () => {
         app.listen(PORT, () => {
             console.log(`API server running on port ${PORT}!`);
-            console.log(`Use GraphQL at https://localhost:${PORT}${server.graphqlPath}`);
+            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
         })
     })
 }

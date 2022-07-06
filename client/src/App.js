@@ -27,26 +27,26 @@ function App() {
         context.logout();
         window.location.href = "/";
       } else {
-        isLoggedIn = true;
+        
         const user_id = localStorage.getItem("user_id")
-        console.log('local storage: ', user_id)
         const token = localStorage.getItem("token")
         const email = localStorage.getItem("email")
         const username = localStorage.getItem("username")
         const perms = localStorage.getItem("perms")
 
         const userContext = {
-          user_id: user_id,
+          _id: user_id,
           token: token,
           email: email,
           username: username,
           perms: perms,
         }
-        console.log('user context: ', userContext)
+
+        console.log("context:", userContext)
 
         if (userContext.user_id) {
-          console.log('in the if: ', user_id)
           context.login(userContext);
+          isLoggedIn = true;
         }
       }
     }

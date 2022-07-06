@@ -2,7 +2,8 @@ import { AuthContext } from '../Context/authContext';
 import { useContext, useEffect, useState, useMemo } from 'react';
 import { useForm } from '../Utilities/hooks';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { TextField, Button, Container, Stack, Alert, Link } from '@mui/material';
+import { TextField, Button, Container, Stack, Alert } from '@mui/material';
+import { Link } from 'react-router-dom'
 import { gql } from 'graphql-tag';
 import { useNavigate } from 'react-router-dom';
 import TicketCard from '../Components/TicketCard'
@@ -14,10 +15,10 @@ import MasterAdminDashboard from '../Components/MasterAdminDashboard';
 
 function Dashboard(props) {
 
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     let navigate = useNavigate();
 
-
+    console.log("user" , user);
 
     useEffect(() => {
         if (!user) {
@@ -61,7 +62,7 @@ function Dashboard(props) {
     return (
         <>
             <p>This is the dashboard</p>
-            <Link href="/new">Click here to open a new ticket</Link>
+            <Link to="/new" style={{ textDecoration: "none", marginRight: "20px"}}>Create New Ticket</Link>
             <div>
                 {handleDashboardRender(user)}
             </div>

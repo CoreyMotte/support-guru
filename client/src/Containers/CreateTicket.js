@@ -30,6 +30,8 @@ function CreateTicket(props) {
     const context = useContext(AuthContext);
     const [errors, setErrors] = useState([]);
 
+    console.log("context", context);
+    console.log(localStorage.getItem("user_id"))
 
     function createTicketCallback() {
         console.log(context.user)
@@ -44,6 +46,7 @@ function CreateTicket(props) {
         createdBy: ""
     });
 
+    
     values.createdBy = context.user.user_id;
 
     const [createTicket] = useMutation(CREATE_TICKET, {

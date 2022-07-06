@@ -14,7 +14,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:3001/graphql", "http://support-guru.herokuapp.com/graphql"]
+    origin: ["http://localhost:3001/graphql", "https://support-guru.herokuapp.com/graphql"]
 }));
 
 if (process.env.NODE_ENV === 'production') {

@@ -30,6 +30,10 @@ const userSchema = new Schema({
     pending_admin: {
         type: Boolean
     },
+    denied: {
+        type: Boolean,
+        default: false
+    },
     openedTickets: [
         {
             type: Schema.Types.ObjectId,

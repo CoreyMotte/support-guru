@@ -11,6 +11,7 @@ const typeDefs = gql`
         openedTickets: [Ticket!]
         perms: String
         pending_admin: Boolean
+        denied: Boolean
     }
 
     input RegisterInput {
@@ -19,7 +20,7 @@ const typeDefs = gql`
         password: String
         confirmPassword: String
         perms: String
-        pending_admin: String
+        admin_requested: String
     }
 
     input LoginInput {
@@ -69,6 +70,8 @@ const typeDefs = gql`
         createTicket(ticketInput: TicketInput): Ticket
         updateTicket(updateTicketInput: UpdateTicketInput): Ticket
         closeTicket(_id: String): Ticket
+        approveAdminUser(_id: String): User
+        denyAdminUser(_id: String): User
         
     }
 `;

@@ -39,7 +39,8 @@ module.exports = {
                 password: encryptedPassword,
             })
 
-            if (admin_requested) {
+            console.log("admin_requested ", admin_requested)
+            if (admin_requested === true) {
                 newUser.perms = 'admin',
                 newUser.pending_admin = true
             } else {
@@ -96,6 +97,17 @@ module.exports = {
                 //If user doesn't exist, throw error
                 throw new ApolloError('Incorrect password!', "INCORRECT_PASSWORD")
             }        
+        },
+
+        approveAdminUser: async(_, { _id }) => {
+            const pendingUser = await User.findByIdAndUpdate(_id, { pending_admin: false }, { new: true });
+            return pendingUser;
+            
+        },
+
+        denyAdminUser: async(_, { _id }) => {
+            const pendingUser = await User.findByIdAndUpdate(_id, { denied: true }, { new: true });
+            return pendingUser;
         }
 
     }

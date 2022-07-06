@@ -40,7 +40,7 @@ module.exports = {
             })
 
             console.log("admin_requested ", admin_requested)
-            if (admin_requested === true) {
+            if (admin_requested == true) {
                 newUser.perms = 'admin',
                 newUser.pending_admin = true
             } else {

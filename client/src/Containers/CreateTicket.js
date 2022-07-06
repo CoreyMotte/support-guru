@@ -34,7 +34,6 @@ function CreateTicket(props) {
     console.log(localStorage.getItem("user_id"))
 
     function createTicketCallback() {
-        console.log(context.user)
         createTicket();
     }
 
@@ -47,12 +46,13 @@ function CreateTicket(props) {
     });
 
     
-    values.createdBy = context.user.user_id;
+    values.createdBy = localStorage.getItem("user_id");
 
     const [createTicket] = useMutation(CREATE_TICKET, {
         update(proxy, { data: { createTicket: ticketData } }) {
-            console.log(ticketData);
-            navigate(`/ticket/${ticketData._id}`);
+            console.log("ticket data:", ticketData);
+            // navigate(`/ticket/${ticketData._id}`);
+            window.location.href =`/ticket/${ticketData._id}`;
         },
         onError({ graphQLErrors }) {
             setErrors(graphQLErrors);

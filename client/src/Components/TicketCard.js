@@ -56,13 +56,12 @@ function TicketCard({ ticket: { _id, title, description, isOpen, category, prior
     const context = useContext(AuthContext);
     const [errors, setErrors] = useState([]);
 
-
+    
     function updateTicketCallback() {
         updateTicket();
         handleClose();
-        console.log('firing');
     }
-
+    console.log("ticket card id ", _id)
     const [closeTicket, { data }] = useMutation(CLOSE_TICKET, {variables: {id: _id}});
 
     const { onChange, onSubmit, values } = useForm(updateTicketCallback, {
@@ -76,7 +75,6 @@ function TicketCard({ ticket: { _id, title, description, isOpen, category, prior
 
     const [updateTicket, { loading }] = useMutation(UPDATE_TICKET, {
         update(proxy, { data: { updateTicket: updateTicketData } }) {
-            console.log(updateTicketData);
         },
         onError({ graphQLErrors }) {
             setErrors(graphQLErrors);

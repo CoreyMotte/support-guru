@@ -2,7 +2,7 @@ import { AuthContext } from '../Context/authContext';
 import { useContext, useEffect, useState, useMemo } from 'react';
 import { useForm } from '../Utilities/hooks';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { TextField, Button, Container, Stack, Alert } from '@mui/material';
+import { TextField, Button, Container, Stack, Alert, Box } from '@mui/material';
 import { Link } from 'react-router-dom'
 import { gql } from 'graphql-tag';
 import { useNavigate } from 'react-router-dom';
@@ -18,42 +18,36 @@ function Dashboard(props) {
     const { user } = useContext(AuthContext);
     let navigate = useNavigate();
 
-    console.log("user" , user);
-
-    useEffect(() => {
-        if (!user) {
-            navigate('/login');
-        }
-
-    }, [user]);
+    console.log("context", user);
+    
 
 
-    const handleDashboardRender = (user) => {
-        switch (user.perms) {
+
+
+    const handleDashboardRender = () => {
+        let userPerms = localStorage.getItem("perms")
+        let userId = localStorage.getItem("user_id")
+        switch (userPerms) {
             case 'master_admin':
                 return (
                     <div>
                         <MasterAdminDashboard />
-                        <AdminDashboard />
                     </div>
                 )
 
             case 'admin':
-                if (user.pending_admin || user.denied) {
-                    return (
-                        <>
-
-                        </>
-                    )
-                } else {
-                    return (
-                        <AdminDashboard />
-                    )
-                }
-
-            default:
                 return (
-                    <UserDashboard user={user} />
+                    <div>
+                        <AdminDashboard />
+                    </div>
+                )
+
+
+            case 'normal_user':
+                return (
+                    <div>
+                        <UserDashboard userId={userId} />
+                    </div>
                 )
 
         }
@@ -62,9 +56,9 @@ function Dashboard(props) {
     return (
         <>
             <p>This is the dashboard</p>
-            <Link to="/new" style={{ textDecoration: "none", marginRight: "20px"}}>Create New Ticket</Link>
+            <Link to="/new" style={{ textDecoration: "none", marginRight: "20px" }}>Create New Ticket</Link>
             <div>
-                {handleDashboardRender(user)}
+                {handleDashboardRender()}
             </div>
         </>
     )

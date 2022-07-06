@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './Containers/HomePage';
 import NavBar from './Components/NavBar'
 import Register from './Containers/Register';
 import Login from './Containers/Login';
 import Dashboard from './Containers/Dashboard';
+import Footer from './Components/Footer'
 import CreateTicket from './Containers/CreateTicket';
 import ViewTicket from './Containers/ViewTicket';
 import { AuthContext } from './Context/authContext';
@@ -13,7 +14,6 @@ import './App.css';
 
 function App() {
   let context = useContext(AuthContext);
-  console.log(context);
   let isLoggedIn = false;
 
   React.useEffect(() => {
@@ -42,7 +42,6 @@ function App() {
           perms: perms,
         }
 
-        console.log("context:", userContext)
 
         if (userContext.user_id) {
           context.login(userContext);
@@ -53,6 +52,7 @@ function App() {
 
   }, [isLoggedIn])
   return (
+    
     <div>
       <NavBar />
       <Routes>
@@ -64,6 +64,7 @@ function App() {
         <Route path="/ticket/:id" element={<ViewTicket />} />
       </Routes>
     </div>
+    
   );
 }
 

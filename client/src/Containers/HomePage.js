@@ -1,5 +1,6 @@
 import { AuthContext } from '../Context/authContext';
 import { useContext } from 'react';
+import { Typography, Container, Box } from '@mui/material';
 
 function HomePage() {
 
@@ -7,19 +8,25 @@ function HomePage() {
 
     return (
         <>
-            <h1>This is the homepage</h1>
-            {
-                user ?
-                    <>
-                        <h2>{user.email} is logged in</h2>
-                    </>
-                    :
-                    <>
-                        <p>There is no user data</p>
-                    </>
-            }
+        <Container spacing={2} maxWidth="lg">
+            <Typography variant="h3" align="center" marginTop="30px" sx={{fontWeight: "bold"}}>Welcome to Support Guru</Typography>
+            <Box mt={20}>
+            <Typography variant="h4" align="center" marginTop="30px">Support Guru is a simple ticketing system to manage incoming requests from your clients.</Typography>
+            <Typography variant="h5" align="center" marginTop="30px">Register an account or log in to get started!</Typography>
+            </Box>
+            </Container>
         </>
     )
 }
 
 export default HomePage;
+// {
+//     user ?
+//         <>
+//             <Typography>{user.email} is logged in</Typography>
+//         </>
+//         :
+//         <>
+            
+//         </>
+// }

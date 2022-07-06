@@ -13,7 +13,9 @@ const app = express();
 // set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://support-guru.herokuapp.com/graphql"
+}));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));

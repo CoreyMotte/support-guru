@@ -22,7 +22,8 @@ function NavBar() {
                     <Box alignItems="right" sx={{ flexGrow: 1, textAlign: "right" }}>
                         {user ?
                             <>
-                                <Link to="/dashboard" style={{ textDecoration: "none", color: "white", marginRight: "20px"}}>Dashboard</Link>
+                                {/* <Link to="/dashboard" style={{ textDecoration: "none", color: "white", marginRight: "20px"}}>Dashboard</Link> */}
+                                <Button style={{ textDecoration: "none", color: "white"}} onClick={() => {window.location.href = "/dashboard"}}>Dashboard</Button>
                                 <Button style={{ textDecoration: "none", color: "white"}} onClick={onLogout}>Logout</Button>
                             </>
                             :

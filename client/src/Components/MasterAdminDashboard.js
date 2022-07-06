@@ -3,6 +3,7 @@ import TicketCard from './TicketCard';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'graphql-tag';
 import UserCard from '../Components/UserCard'
+import { Container, Box, Typography } from '@mui/material';
 
 const GET_PENDING_USERS = gql`
     query PendingAdminUsers {
@@ -22,11 +23,17 @@ const MasterAdminDashboard = () => {
 
     return (
         <>
+        <Container spacing={2} maxWidth="md">
+        <Typography variant="h4" align="center" marginBottom="30px">Pending Admin Users</Typography>
+            
+
             {data ? data.pendingAdminUsers.map((user) => {
                 return (
                     <UserCard user={user}></UserCard>
                 )
             }) : ""}
+        </Container>
+
         </>
     )
 }

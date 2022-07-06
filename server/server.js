@@ -13,10 +13,10 @@ const app = express();
 // set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
-// app.use(cors({
-//     origin: "https://support-guru.herokuapp.com/"
-// }))
+// app.use(cors());
+app.use(cors({
+    origin: "https://support-guru.herokuapp.com/"
+}))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
@@ -28,9 +28,9 @@ const server = new ApolloServer({
     resolvers
 })
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-//   });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 
 const startApolloServer = async (typeDefs, resolvers) => {
     await server.start();

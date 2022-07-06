@@ -12,6 +12,14 @@ module.exports = {
         ticket: async (parent, { _id }) => {
             return Ticket.findById(_id);
         },
+        findCreatedBy: async(parent, { _id }) => {
+            const ticket = await Ticket.find({ createdBy: _id });
+            return ticket;
+        },
+        findOpenTickets: async(parent) => {
+            const tickets = await Ticket.find({ isOpen: true});
+            return tickets;
+        }
     },
 
     Mutation: {
@@ -30,6 +38,15 @@ module.exports = {
                 id: res.id,
                 ...res._doc
             }
+        },
+
+        updateTicket: async (_, { updateTicketInput: { title, description, _id }}) => {
+            return Ticket.findByIdAndUpdate(_id, {title: title, description: description}, {new: true});
+        },
+
+        closeTicket: async(_, {_id}) => {
+            console.log('closing ticket')
+            return Ticket.findByIdAndUpdate(_id, {isOpen: "false"}, {new: true});
         }
     }
 };

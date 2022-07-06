@@ -9,6 +9,8 @@ const typeDefs = gql`
         password: String
         token: String
         openedTickets: [Ticket!]
+        perms: String
+        pending_admin: Boolean
     }
 
     input RegisterInput {
@@ -16,6 +18,8 @@ const typeDefs = gql`
         email: String
         password: String
         confirmPassword: String
+        perms: String
+        pending_admin: String
     }
 
     input LoginInput {
@@ -29,7 +33,7 @@ const typeDefs = gql`
         description: String
         isOpen: Boolean
         createdAt: String
-        createdBy: User!
+        createdBy: User
         priority: String
         category: String
     }
@@ -42,17 +46,30 @@ const typeDefs = gql`
         createdBy: String
     }
 
+    input UpdateTicketInput {
+        _id: ID
+        title: String
+        description: String
+    }
+
     type Query {
         users: [User]
-        tickets: [Ticket]
         user(id: ID!): User
+        pendingAdminUsers: [User]
+
+        tickets: [Ticket]
         ticket(_id: String!): Ticket
+        findCreatedBy(_id: String!): [Ticket]
+        findOpenTickets: [Ticket]
     }
 
     type Mutation {
         registerUser(registerInput: RegisterInput): User
         loginUser(loginInput: LoginInput): User
         createTicket(ticketInput: TicketInput): Ticket
+        updateTicket(updateTicketInput: UpdateTicketInput): Ticket
+        closeTicket(_id: String): Ticket
+        
     }
 `;
 

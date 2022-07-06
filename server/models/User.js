@@ -24,10 +24,16 @@ const userSchema = new Schema({
     token: {
         type: String
     },
+    perms: {
+        type: String
+    },
+    pending_admin: {
+        type: Boolean
+    },
     openedTickets: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'comment'
+            ref: 'ticket'
         }
     ]
 });

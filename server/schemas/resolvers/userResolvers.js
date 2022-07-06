@@ -37,15 +37,15 @@ module.exports = {
                 username: username,
                 email: email.toLowerCase(),
                 password: encryptedPassword,
+                pending_admin: admin_requested
             })
 
             console.log("admin_requested ", admin_requested)
-            if (admin_requested == true) {
-                newUser.perms = 'admin',
-                newUser.pending_admin = true
-            } else {
-                newUser.perms = 'normal_user',
-                newUser.pending_admin = false
+            if (admin_requested) {
+                newUser.perms = 'admin'
+            } 
+            if (newUser.pending_admin == false) {
+                newUser.perms = 'normal_user'
             }
 
             //Create our JWT (attach to User model)
@@ -106,7 +106,7 @@ module.exports = {
         },
 
         denyAdminUser: async(_, { _id }) => {
-            const pendingUser = await User.findByIdAndUpdate(_id, { denied: true }, { new: true });
+            const pendingUser = await User.findByIdAndUpdate(_id, { denied: true, pending_admin: false }, { new: true });
             return pendingUser;
         }
 

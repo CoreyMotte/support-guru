@@ -1,6 +1,7 @@
 import { AuthContext } from '../Context/authContext';
 import { useContext } from 'react';
 import { Typography, Container, Box } from '@mui/material';
+import BuildIcon from '@mui/icons-material/Build';
 
 function HomePage() {
 
@@ -8,7 +9,7 @@ function HomePage() {
 
     return (
         <>
-        <Container spacing={2} maxWidth="lg">
+        <Container spacing={2} maxWidth="lg" sx={{alignItems: "center"}}>
             <Typography variant="h3" align="center" marginTop="30px" sx={{fontWeight: "bold"}}>Welcome to Support Guru</Typography>
             <Box mt={20}>
             <Typography variant="h4" align="center" marginTop="30px">Support Guru is a simple ticketing system to manage incoming requests from your clients.</Typography>

@@ -46,6 +46,7 @@ function Dashboard(props) {
             case 'normal_user':
                 return (
                     <div>
+                        <Link to="/new" style={{ textDecoration: "none", marginRight: "20px" }}>Create New Ticket</Link>
                         <UserDashboard userId={userId} />
                     </div>
                 )
@@ -55,8 +56,7 @@ function Dashboard(props) {
 
     return (
         <>
-            <p>This is the dashboard</p>
-            <Link to="/new" style={{ textDecoration: "none", marginRight: "20px" }}>Create New Ticket</Link>
+            
             <div>
                 {handleDashboardRender()}
             </div>

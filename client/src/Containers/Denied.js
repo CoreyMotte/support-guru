@@ -8,7 +8,7 @@ function Denied() {
 
     return (
         <>
-        <p>Sorry you are denied!</p>
+        <Typography variant="h4" align="center" marginTop="30px">Your access has been denied. Please reach out to your supervisor.</Typography>
         </>
     )
 }

@@ -6,6 +6,7 @@ import Register from './Containers/Register';
 import Login from './Containers/Login';
 import Dashboard from './Containers/Dashboard';
 import Footer from './Components/Footer'
+import Denied from './Containers/Denied'
 import CreateTicket from './Containers/CreateTicket';
 import ViewTicket from './Containers/ViewTicket';
 import { AuthContext } from './Context/authContext';
@@ -62,6 +63,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/new" element={<CreateTicket />} />
         <Route path="/ticket/:id" element={<ViewTicket />} />
+        <Route path="/denied" element={<Denied />} />
       </Routes>
     </div>
     

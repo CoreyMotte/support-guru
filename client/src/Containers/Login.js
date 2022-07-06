@@ -72,6 +72,7 @@ function Login(props) {
         <TextField
           label="Password"
           name="password"
+          type="password"
           onChange={onChange}
         />
       </Stack>

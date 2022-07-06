@@ -24,14 +24,14 @@ const MasterAdminDashboard = () => {
     return (
         <>
         <Container spacing={2} maxWidth="md">
-        <Typography variant="h4" align="center" marginBottom="30px">Pending Admin Users</Typography>
+        <Typography variant="h4" align="center" marginTop="30px">Pending Admin Users</Typography>
             
 
             {data ? data.pendingAdminUsers.map((user) => {
                 return (
                     <UserCard user={user}></UserCard>
                 )
-            }) : ""}
+            }) : "There are no pending admin users."}
         </Container>
 
         </>

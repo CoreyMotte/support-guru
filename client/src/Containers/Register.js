@@ -56,7 +56,7 @@ function Register(props) {
     return (
         <Container spacing={2} maxWidth="sm">
             <h3>Register</h3>
-            <p>This is the register page, register below to create an account</p>
+            <p>Please enter your credentials below to register for an account.</p>
             <Stack spacing={2} paddingBottom={2}>
                 <TextField
                     label="Username"
@@ -71,11 +71,13 @@ function Register(props) {
                 <TextField
                     label="Password"
                     name="password"
+                    type="password"
                     onChange={onChange}
                 />
                 <TextField
                     label="Confirm Password"
                     name="confirmPassword"
+                    type="password"
                     onChange={onChange}
                 />
                 <FormControl fullWidth>
